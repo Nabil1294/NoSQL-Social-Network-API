@@ -1,6 +1,6 @@
 const { Schema, model, Types} = require('mongoose');
 const dayjs = require('dayjs');
-// creating Thought Model
+
 const reactionSchema = new Schema({
   reactionId: {
     type: Schema.Types.ObjectId,
@@ -48,3 +48,4 @@ thoughtSchema.virtual('reactionCount').get(function () {
 const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
+

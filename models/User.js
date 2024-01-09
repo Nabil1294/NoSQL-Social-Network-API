@@ -1,7 +1,6 @@
-// requiring mongoose
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// creating user schema
+
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -15,7 +14,7 @@ const UserSchema = new Schema({
     unique: true,
     match: [/.+\@.+\..+/, 'Please enter a valid e-mail address']
   },
-  houghts: [
+  thoughts: [  // Fixed the typo here
     {
       type: Schema.Types.ObjectId,
       ref: 'Thought'
@@ -33,6 +32,11 @@ const UserSchema = new Schema({
         virtuals: true
       },
       id: false
+});
+
+// Adding the virtual for friendCount
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
 });
 
 const User = mongoose.model('User', UserSchema);
